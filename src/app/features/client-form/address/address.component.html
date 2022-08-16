@@ -1,0 +1,52 @@
+<div class="wrapper">
+  <form (ngSubmit)="onSubmit()" class="form-wrapper" [formGroup]="addressForm">
+    <div class="space-around">
+      <mat-form-field appearance="outline">
+        <mat-label>Index</mat-label>
+        <input formControlName="index" matInput #input placeholder="index">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Country</mat-label>
+        <select (change)="setCities($any($event))"  formControlName="country" matNativeControl required>
+          <option *ngFor="let countryData of (countriesAndCities$ | async)" [value]="countryData.country">{{countryData.country}}</option>
+        </select>
+        <mat-error *ngIf="addressForm.get('country').hasError">Fill correctly</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="space-around">
+      <mat-form-field appearance="outline">
+        <mat-label>Area</mat-label>
+        <input formControlName="area" matInput #input placeholder="Area">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>City</mat-label>
+        <select formControlName="city" matNativeControl required>
+          <option *ngFor="let city of cities$ | async" [value]="city">{{city}}</option>
+        </select>
+        <mat-error *ngIf="addressForm.get('city').hasError">Fill correctly</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="space-around">
+      <mat-form-field appearance="outline">
+        <mat-label>Street</mat-label>
+        <input type="text" formControlName="street" matInput #input
+               placeholder="Street">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>House</mat-label>
+        <input type="text" formControlName="street" matInput #input
+               placeholder="House">
+      </mat-form-field>
+    </div>
+
+    <div class="flex-center">
+      <button routerLink="../address" type="submit" mat-stroked-button color="accent">Submit</button>
+    </div>
+
+  </form>
+
+</div>

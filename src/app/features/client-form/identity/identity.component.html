@@ -1,0 +1,59 @@
+<div class="wrapper">
+  <form (ngSubmit)="onSubmit()" class="form-wrapper" [formGroup]="identityForm">
+
+    <div class="space-around">
+      <mat-form-field appearance="outline">
+        <mat-label>Document type</mat-label>
+        <select formControlName="documentType" matNativeControl>
+          <option *ngFor="let document of DOCUMENT_TYPES" [value]="document">{{document}}</option>
+        </select>
+        <mat-error *ngIf="identityForm.get('documentType').hasError">Required</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Series</mat-label>
+        <input type="text" formControlName="series" matInput #input
+               placeholder="Series">
+      </mat-form-field>
+    </div>
+
+    <div class="space-around">
+      <mat-form-field appearance="outline">
+        <mat-label>Number</mat-label>
+        <input type="number" formControlName="number" matInput #input
+               placeholder="Number">
+        <mat-error *ngIf="identityForm.get('number').hasError">Required</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Issued by</mat-label>
+        <input type="text" formControlName="issuedBy" matInput #input
+               placeholder="Issued by">
+      </mat-form-field>
+    </div>
+
+    <div class="space-around">
+      <mat-form-field appearance="outline">
+        <mat-label>Date of issue</mat-label>
+        <input autocomplete="off" formControlName="dateOfIssue" matInput [matDatepicker]="picker">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="identityForm.get('dateOfIssue').hasError">Required</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="space-around">
+      <button type="button" mat-raised-button (click)="fileInput.click()">Choose File</button>
+      <input hidden formControlName="file" #fileInput type="file">
+
+      <button type="submit" mat-stroked-button color="accent">Submit</button>
+    </div>
+
+    <p class="green" *ngIf="showMessage">Form Successfully Submitted</p>
+
+
+
+  </form>
+
+</div>

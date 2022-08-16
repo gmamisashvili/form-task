@@ -1,0 +1,47 @@
+<div class="wrapper">
+  <div class="data-wrapper">
+    <div *ngIf="(clientData$ | async) as clientData" class="client-wrapper">
+      <p class="title">Client Data</p>
+      <div class="client-data">
+        <span class="key">Name: </span>
+        <span class="value">{{clientData.name}}</span>
+      </div>
+      <div class="client-data">
+        <span class="key">Lastname: </span>
+        <span class="value">{{clientData.lastName}}</span>
+      </div>
+      <div class="client-data">
+        <span class="key">Birth date: </span>
+        <span class="value">{{clientData.birthDate.toString() | date: 'MM/dd/yyyy'}}</span>
+      </div>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div *ngIf="(addressData$ | async) as addressData" class="address-wrapper">
+      <p class="title">Address Data</p>
+      <div class="client-data">
+        <span class="key">Country: </span>
+        <span class="value">{{addressData.country}}</span>
+      </div>
+      <div class="client-data">
+        <span class="key">City: </span>
+        <span class="value">{{addressData.city}}</span>
+      </div>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div *ngIf="(identityData$ | async) as identity" class="identity-wrapper">
+      <p class="title">Identity</p>
+      <div class="client-data">
+        <span class="key">Document type: </span>
+        <span class="value">{{identity.documentType}}</span>
+      </div>
+      <div class="client-data">
+        <span class="key">Date of issue: </span>
+        <span class="value">{{identity.dateOfIssue.toString() | date: 'MM/dd/yyyy'}}</span>
+      </div>
+    </div>
+  </div>
+</div>

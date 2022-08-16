@@ -1,0 +1,23 @@
+.wrapper {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-wrapper {
+  background-color: #656553;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.mat-form-field, mat-slide-toggle {
+  width: 45%;
+  color: #fff;
+}
+
+.green {
+  text-align: center;
+  margin-top: 10px;
+  color: #009a00;
+}

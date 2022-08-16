@@ -1,0 +1,78 @@
+<div class="wrapper">
+  <form (ngSubmit)="onSubmit()" class="form-wrapper" [formGroup]="clientForm">
+    <div class="space-around">
+      <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input required formControlName="name" matInput #input placeholder="name">
+        <mat-error *ngIf="clientForm.get('name').hasError">Required</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Last name</mat-label>
+        <input required formControlName="lastName" matInput #input placeholder="last name">
+        <mat-error *ngIf="clientForm.get('lastName').hasError">Required</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="space-around">
+      <mat-form-field appearance="outline">
+        <mat-label>Middle name</mat-label>
+        <input formControlName="middleName" matInput #input placeholder="middle name">
+        <mat-error *ngIf="clientForm.get('middleName').hasError">Required</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Birth Date</mat-label>
+        <input required autocomplete="off" formControlName="birthDate" matInput [matDatepicker]="picker">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="clientForm.get('birthDate').hasError">Required</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="space-around">
+      <mat-form-field appearance="outline">
+        <mat-label>Gender</mat-label>
+        <select formControlName="gender" matNativeControl>
+          <option *ngFor="let gender of genders" [value]="gender">{{gender}}</option>
+        </select>
+        <mat-error *ngIf="clientForm.get('gender').hasError">Required</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Coordinator</mat-label>
+        <select formControlName="coordinator" matNativeControl>
+          <option *ngFor="let coordinator of coordinators" [value]="coordinator">{{coordinator}}</option>
+        </select>
+      </mat-form-field>
+    </div>
+
+    <div class="space-around">
+      <mat-form-field appearance="outline">
+        <mat-label>Client group</mat-label>
+        <select formControlName="clientGroup" matNativeControl required>
+          <option *ngFor="let client of clients" [value]="client">{{client}}</option>
+        </select>
+        <mat-error *ngIf="clientForm.get('clientGroup').hasError">Required</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Phone</mat-label>
+        <input type="text" prefix="+1" mask=" (000) 000 00 00" required formControlName="phone" matInput #input
+               placeholder="Phone">
+        <mat-error *ngIf="clientForm.get('phone').errors?.['required']">Required</mat-error>
+        <mat-error *ngIf="clientForm.get('phone').errors?.['minlength']">Minimum 11</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="flex-center">
+      <mat-slide-toggle
+        [ngStyle]="{'color' : clientForm.get('smsSubscription').value ? 'rgba(255,255,255,1)' : 'rgba(255,255,255,.7)'}"
+        formControlName="smsSubscription">SMS Subscription
+      </mat-slide-toggle>
+      <button type="submit" mat-stroked-button color="accent">Submit</button>
+    </div>
+
+  </form>
+
+</div>
